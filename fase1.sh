@@ -17,7 +17,8 @@ BGreen='\033[1;32m'       # Bright Green
 Yellow='\033[0;33m'       # Yellow
 BYellow='\033[1;33m'      # BYellow
 
-clear
+
+
 # Creating Logfile to see time it takes to do the walk..
 echo "" > fase1.log
 echo "################################################################################" >> fase1.log
@@ -36,7 +37,12 @@ totalmem=`expr $sysmem + $gpumem`
 modelB=`lsusb -t | grep -c smsc95xx`
 rpiSerialNum=`grep Serial /proc/cpuinfo | cut -d " " -f 2`
 
+# Start meditating this will take some time
+sleep 3
+
+#Clear the screen to preform the show
 clear
+
 printf "\n"
 printf "${BPurple}###############################################################################\n"
 printf "#${BWhite}                      Step 1 : Updating Rasberry Pi Zero !!                  ${BPurple}#\n"
@@ -74,22 +80,23 @@ fi
 
 printf "${BYellow}\n"
 vcgencmd measure_temp
- printf "${NC}\n"
+printf "${NC}\n"
 
-printf "\n"
-sleep 3
 
-if [ "$gpumem" = "16" ]
+sleep 2.5
+
+if [ "$gpumem" = "148" ]
 then
   sleep .5
   #printf "                 GPU_MEMORY = 16 MB\n"
 else
 
-  printf "${BRed}\n              Memory set to $gpumem MB Use Raspi-config to set to 16 Mb\n"
-  printf "${NC}"
+  printf "${BRed}\n\n"
+  printf "      GPU Memory to high {$gpumem MB}. Use 'sudo raspi-config' to set to 16 Mb\n\n"
+  printf "      7. Advanced Options -> A3. Memory Split ->  16 Mb\n\n"
+  printf "${NC}\n\n"
   exit 1
 fi
-
 
 
 printf "\n"
