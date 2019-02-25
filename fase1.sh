@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION="0.2.0"
+VERSION="0.2.1"
 
 # Define ASCII  Colors.
 NC='\033[0m'              # Text Reset
