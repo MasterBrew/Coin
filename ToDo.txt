@@ -1,25 +1,7 @@
-PKG_CONFIG_LIBDIR=/usr/lib/arm-linux-gnueabihf/pkgconfig:/usr/share/pkgconfig \
-PKG_CONFIG_SYSROOT_DIR=/ \
-../qt-everywhere-src-5.10.1/configure -v -opengl es2 -eglfs -no-gtk \
--device linux-rasp-pi3-vc4-g++ -device-option CROSS_COMPILE=/usr/bin/ \
--opensource -confirm-license -release -reduce-exports \
--force-pkg-config -no-kms -nomake examples -no-compile-examples -no-pch \
--skip qtwayland -skip qtwebengine -no-feature-geoservices_mapboxgl \
--qt-pcre -ssl -evdev -system-freetype -fontconfig -glib -prefix /opt/Qt5.10
-
-
-
 
 http://www.tal.org/tutorials/building-qt-510-raspberry-pi-debian-stretch
 
 Building Qt 5.10 for Raspberry Pi on Debian Stretch
-23/10/2018 - 12:15
-Give Building Qt 5.10 for Raspberry Pi on Debian Stretch 1/5
-Give Building Qt 5.10 for Raspberry Pi on Debian Stretch 2/5
-Give Building Qt 5.10 for Raspberry Pi on Debian Stretch 3/5
-Give Building Qt 5.10 for Raspberry Pi on Debian Stretch 4/5
-Give Building Qt 5.10 for Raspberry Pi on Debian Stretch 5/5
-Average: 4.6 (16 votes)
 
 Raspbian based on Debian Stretch comes with an old (5.7.1) version of Qt that is already outdated and missing some features and modules.
  Afaik there are no up-to-date backports so the only way to get an up to date version version of Qt with all features enabled running 
@@ -214,18 +196,3 @@ WebGL	-platform webgl
 Enjoy Qt 5.10.1 on your Pi, Happy coding!
  
 
-Next step: 
-Testing QtQuick on Raspberry Pi
-Changelog: 
-11/06/2018 - 12:29
-Related tutorials: 
-Building Qt 5.8 for Raspberry Pi on Debian Stretch
-Keywords: 
-Qt, Raspberry Pi, stretch, Debian
-
-
- 
-Tutorials | Projects| Privacy policy
-
-www.tal.org is the home of a freelance coder and tinker that creates various applications for various platforms and devices.
-(PS. Domain is not for sale, so don't ask, I won't respond to such queries.)
