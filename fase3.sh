@@ -5,7 +5,7 @@ echo '##########################################################################
 echo '#                   Step 3 : Getting Essentials  for Bitcore                  #'
 echo '###############################################################################'
 echo ''
-#read -n 1 -s -r -p " * Press key to get essensials for a bitcoin *"
+#read -n 1 -s -r -p " * Press key to get essensials for a bitcore *"
 
 echo ''
 echo ''
@@ -29,6 +29,7 @@ sleep 3
 echo '           -  Did it look okey to you?'
 echo ''
 echo ''
+
 echo '###############################################################################'
 echo '#        Install Berkeley database 4.8, then build the BerkeleyDB             #'
 echo '###############################################################################'
