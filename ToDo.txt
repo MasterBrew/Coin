@@ -1,6 +1,3 @@
-
-http://www.tal.org/tutorials/building-qt-510-raspberry-pi-debian-stretch
-
 Building Qt 5.10 for Raspberry Pi on Debian Stretch
 
 Raspbian based on Debian Stretch comes with an old (5.7.1) version of Qt that is already outdated and missing some features and modules.
@@ -127,7 +124,6 @@ For some odd reason Qt insists on being configured for cross-compiling, even whe
 You can choose to build a generic build that will work on all of the various Pi versions or specifc one that is optimized for your specific type of board. Choose one of:
 
 
- 
 Raspberry Pi ARM platform options
 Platform option	Device
 linux-rasp-pi-g++	ARMv6 compatible version, resulting binaries will run on all Raspberry Pi models. This is the default option and the only one tested to work!
@@ -187,7 +183,6 @@ Choosing platform
 As explained in the introduction, this build will default to using the eglfs platform, meaning that no windowing environment is required to run GUI applications. You can choose the platform binaries will run against by suppling the "-platform" paramter when running them.
 
 
- 
 Qt Platform option examples
 Platform	Parameter
 X11	-platform xcb
