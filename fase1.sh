@@ -85,7 +85,9 @@ printf "${NC}\n"
 
 sleep 2.5
 
-if [ "$gpumem" = "148" ]
+
+#  Onley run when GPU Memory setting is as low as possible ..
+if [ "$gpumem" = "16" ]
 then
   sleep .5
   #printf "                 GPU_MEMORY = 16 MB\n"

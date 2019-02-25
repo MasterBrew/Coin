@@ -1,0 +1,10 @@
+
+################################################################################
+#                                       Log File                               #
+################################################################################
+
+Start Fase 1  : Mon Feb 25 17:13:26 CET 2019 - Updating The Raspberry
+Start Fase 1  : Mon Feb 25 17:14:44 CET 2019 - sudo apt-get update
+Start Fase 1  : Mon Feb 25 17:15:21 CET 2019 - sudo apt-get upgrade
+Start Fase 1  : Mon Feb 25 17:15:42 CET 2019 - Cleaning up
+Start Fase 1  : Mon Feb 25 17:15:56 CET 2019 Finished Logging....
