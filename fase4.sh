@@ -1,61 +1,145 @@
 #!/bin/bash
-VERSION="0.1.1"
 
-clear
+VERSION="0.2.4"
+
+# Define ASCII  Colors.
+NC='\033[0m'              # Text Reset
+White='\033[0;37m'        # White
+BWhite='\033[1;37m'       # Bright White
+Purple='\033[0;35m'       # Purple
+BPurple='\033[1;95m'      # Bright Purple
+BCyan='\033[1;36m'        # Cyan
+Red='\033[0;31m'          # Red
+BRed='\033[1;31m'         # Bright Red
+Blue='\033[0;34m'         # Blue
+BBlue='\033[1;34m'        # Bright Blue
+Green='\033[0;32m'        # Green
+BGreen='\033[1;32m'       # Bright Green
+Yellow='\033[0;33m'       # Yellow
+BYellow='\033[1;33m'      # BYellow
+
+
 echo "##############################################################################" > fase4.log
 echo "#                                     Log File                               #" >> fase4.log
 echo "##############################################################################" >> fase4.log
 echo "" >> fase4.log
 
-  var1=`date`
-  echo "Start Fase 4  : $var1 - Start getting Bitcore Essentials & dependencies " >> fase4.log
+var1=`date`
+echo "Start Fase 4  : $var1 - Start getting Bitcore Essentials & dependencies " >> fase4.log
 
+sysmem=`/opt/vc/bin/vcgencmd get_mem arm  | sed "s/[A-Za-z]*//g" | cut -c 2-`
+gpumem=`/opt/vc/bin/vcgencmd get_mem gpu  | sed "s/[A-Za-z]*//g" | cut -c 2-`
+totalmem=`expr $sysmem + $gpumem`
+
+# Model A shouldnt have the smsc95xx installed! Return 1 if its a modelB
+modelB=`lsusb -t | grep -c smsc95xx`
+rpiSerialNum=`grep Serial /proc/cpuinfo | cut -d " " -f 2`
+
+#Clear the screen to preform the show
 clear
-echo '                                                                               '
-echo '###############################################################################'
-echo '#                   Step 4 : Getting Essentials for Bitcore                   #'
-echo '###############################################################################'
-echo ''
-#read -n 1 -s -r -p "           *  Press key to get essensials for a bitcoin  *"
-echo ''
 
+printf "\n"
+printf "${BPurple}###############################################################################\n"
+printf "#${BWhite}                Start getting Bitcore Essentials & Dependencies              ${BPurple}#\n"
+printf "###############################################################################\n"
+printf "${NC}\n"
+printf "${BCyan}                   Starting Fase4  @ $var1\n"
+printf "${NC}\n"
+
+if [ "$modelB" = "1" ]
+then
+  printf "${White}              Raspberry Pi Model B   -   serial: $rpiSerialNum\n"
+  printf "\n"
+  printf "${BBlue}                    Memory detected: $totalmem MB ($sysmem Sys/$gpumem GPU)${NC}\n"
+else
+  
+  printf "${White}              Raspberry Pi Model A   -   serial: $rpiSerialNum\n"
+  printf "\n"
+  printf "${BBlue}                    Memory detected: $totalmem MB ($sysmem Sys/$gpumem GPU)${NC}\n"
+fi
+
+if free | awk '/^Swap:/ {exit !$2}'; then
+
+       printf "${BGreen} Swap Memory file found!.\n\n"
+       free -m
+       printf "${NC}"
+
+else
+    printf "\n"
+    printf "${BRed}          *  Swap File Settings Not Correct!  *\n"
+    printf "${NC}\n"
+    printf "\n"
+    printf "Use 'sudo nano /etc/dphys-swapfile' ->  CONF_SWAPSIZE=1024 "
+    printf ""
+    exit 1
+
+fi
+
+printf "${BYellow}\n"
+vcgencmd measure_temp
+printf "${NC}\n"
+
+sleep 1.5
+
+#  Onley run when GPU Memory setting is as low as possible ..
+if [ "$gpumem" = "16" ]
+then
+  sleep .5
+  #printf "                 GPU_MEMORY = 16 MB\n"
+else
+
+  printf "${BRed}\n\n"
+  printf "      GPU Memory to high {$gpumem MB}. Use 'sudo raspi-config' to set to 16 Mb\n\n"
+  printf "      7. Advanced Options -> A3. Memory Split ->  16 Mb\n\n"
+  printf "${NC}\n\n"
+  exit 1
+fi
+
+#printf "\n"
+#printf "\n${BWhite}"
+#read -n 1 -s -r -p "                         *  Press any key to begin  *"
+#printf "\n${NC}"
 
   var2=`date`
   echo "Start Fase 4  : $var1 - 'sudo /etc/init.d/dphys-swapfile start'" >> fase4.log
+  #sudo /etc/init.d/dphys-swapfile start
 
-sudo /etc/init.d/dphys-swapfile start
-echo ''
-echo ''
-free -m
-echo ''
-#read -n 1 -s -r -p "           * Press key to start *"
-echo ''
-echo '###############################################################################'
-echo '#   Berkeley DB 4.8.30 4.8.x   (only needed when wallet enabled) -  fase2.sh  #'
-echo '###############################################################################'
-echo ''
-echo '    - Already installed in fase3 if you did follow the yellowbrick road' 
-sleep .2
-echo '' 
-echo '###############################################################################'
-echo '#   Boost Library  1.62.0   Algorithms, Function objects and  higher-order    #'
-echo '#                           programming, Memory, Miscellaneous and Idioms     #' 
-echo '###############################################################################'
-echo ''
 
+# Check it Berkeley DB is installed???
+
+printf "\n\n"
+printf "${White}##############################################################################${NC}\n"
+printf "${White}#${BWhite}         Berkeley DB 4.8.30 4.8.x    (only needed when wallet enabled)      ${White}#${NC}\n"
+printf "${White}##############################################################################${NC}\n"
+printf "\n\n"
+printf "${BYellow}\n"
+printf "      - Already installed in fase3 if you did follow the yellowbrick road"
+printf "${NC}\n\n"
+
+sleep 1.5
+#read -n 1 -s -r -p "                       *  Press any key to begin  *"
+
+printf "\n\n"
+printf "${White}##############################################################################${NC}\n"
+printf "${White}#${BWhite}         Boost Library  1.62.0   Algorithms, Function objects and          ${White} #${NC}\n"
+printf "${White}#${BWhite}         higher-order  programming, Memory, Miscellaneous and Idioms       ${White} #${NC}\n"
+printf "${White}##############################################################################${NC}\n"
+printf "\n\n"
 
   var3=`date`
   echo "Start Fase 4  : $var3 - Installing Boost Librarys." >> fase4.log
 
 sudo apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-program-options-dev
 
-sleep .5
 
-echo ''
-echo '###############################################################################'
+sleep 1.5
+#read -n 1 -s -r -p "                       *  Press any key to begin  *"
+
+
+
 echo '#   ZMQ dependencies  - provides ZeroMessageQ API 4.x                         #'
-echo '###############################################################################'
-echo ''
+
+
 
 
   var4=`date`
