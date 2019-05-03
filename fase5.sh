@@ -62,7 +62,7 @@ echo "Start fase 5 : $var5 - Start ./autogen.sh" >> fase5.log
 var6=`date`
 echo "Start fase 5 : $var6 - Start ./configuration" >> fase5.log
 
-./configure CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include -O" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --disable-tests --disable-bench --enable-upnp-default --with-gui
+./configure CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include -O" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --disable-tests --disable-bench --enable-upnp-default --with-gui --enable-glibc-back-compat --enable-reduce-exports
 
 var7=`date`
 echo "Start fase 5 : $var7 - Start make -j2" >> fase5.log
