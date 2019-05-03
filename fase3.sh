@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 clear echo ' '
 echo '###############################################################################'
 echo '#                   Step 3 : Getting Essentials  for Bitcore                  #'
