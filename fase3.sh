@@ -7,6 +7,7 @@ echo '##########################################################################
 echo ''
 #read -n 1 -s -r -p " * Press key to get essensials for a bitcore *"
 
+
 echo ''
 echo ''
 echo ' Dont forget to check the swapfile = 1024!'
