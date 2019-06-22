@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="\t\t\t Installing Bitcore [BTX] Wallet"
+VERSION="\t\t\t Installing Bitcoin [BTC] Wallet"
 
 # Define ASCII  Colors.
 NC='\033[0m'              # Text Reset
@@ -20,25 +20,25 @@ BYellow='\033[1;33m'      # BYellow
 
 clear
 printf "\n"
-printf "${BPurple}###############################################################################${NC}\n"
+printf "${Yellow}###############################################################################${NC}\n"
 printf "${BWhite}$VERSION${NC}\n"
-printf "${BPurple}###############################################################################${NC}\n\n"
-
+printf "${Yellow}###############################################################################${NC}\n\n"
 printf "\t${BYellow}First things first and than the rest get ready for the ride....${NC}\n\n"
+printf "${White}\t\t\tBy the power of 'Satoshi Nakamoto'${NC}\n"
 
 # For the fun we  show a count down...
 printf "\t\t\t "
 for (( counter=10; counter>=0; counter-- ))
 do
 echo -n "$counter "
-sleep .1
+sleep .01
 done
 printf "\n\n"
 
 # Sleep for .5 seconds
-sleep .5
+sleep .05
 
-# Logging fase 5 for later analizing comping time and state..   
+# Logging fase 5 for later analizing comping time and state.
 var1=`date`
 echo "Start fase 5 : $var1 - Starting with starting swap-file" > fase5.log
 
@@ -58,9 +58,9 @@ echo "Start fase 5 : $var2 - Installing Git  " >> fase5.log
 
 NEXT_STEP="Installing Git"
 printf "\n"
-printf "${Purple}###############################################################################${NC}\n"
+printf "${BYellow}###############################################################################${NC}\n"
 printf "${BWhite}  \t\t\t\t $NEXT_STEP     ${NC}\n"
-printf "${Purple}###############################################################################${NC}\n\n"
+printf "${BYellow}###############################################################################${NC}\n\n"
 sudo apt-get install git
 
 var3=`date`
@@ -68,45 +68,49 @@ echo "Start fase 5 : $var3 - Making ~/wallets directory" >> fase5.log
 
 NEXT_STEP="Creating Directory ~/wallets to install Bitcore source code"
 printf "\n"
-printf "${Purple}###############################################################################${NC}\n"
+printf "${BYellow}###############################################################################${NC}\n"
 printf "${BWhite}\t $NEXT_STEP     ${NC}\n"
-printf "${Purple}###############################################################################${NC}\n\n"
+printf "${BYellow}###############################################################################${NC}\n\n"
 
 # todo   user ask y/n to remove?
 printf "Removed old '~/wallets' directory... Done"
-rm -rf ~/wallets
+# rm -rf ~/wallets
 printf "\n"
 printf "Creating new '~/wallets' directory... Done"
+
+
+printf "\nDemo mode!!! \n"
+sleep 5
+
 mkdir ~/wallets
 cd ~/wallets
+
 printf "\n"
 
 var4=`date`
-echo "Start fase 5 : $var3 - Cloning into Git to get BitCore." >> fase5.log
+echo "Start fase 5 : $var3 - Cloning into Git to get BitCoin." >> fase5.log
 
 NEXT_STEP="Cloning into Github to get the magic Code "
 printf "\n"
-printf "${Purple}###############################################################################${NC}\n"
+printf "${BYellow}###############################################################################${NC}\n"
 printf "${BWhite}  \t\t $NEXT_STEP     ${NC}\n"
-printf "${Purple}###############################################################################${NC}\n\n"
+printf "${BYellow}###############################################################################${NC}\n\n"
 
 sleep 2
 # Git Clone latest sourcecode
-git clone https://github.com/LIMXTEC/BitCore
 
-cd BitCore
-printf "\n"
-ls -l
-sleep 5
+# git clone https://github.com/bitcoin/bitcoin.git
+
+cd bitcoin
 
 var5=`date`
 echo "Start fase 5 : $var5 - Start ./autogen.sh" >> fase5.log
 
 NEXT_STEP="Please wait ...  ./autogen.sh is running "
 printf "\n"
-printf "${Purple}###############################################################################${NC}\n"
+printf "${BYellow}###############################################################################${NC}\n"
 printf "${BWhite}  \t\t $NEXT_STEP     ${NC}\n"
-printf "${Purple}###############################################################################${NC}\n\n"
+printf "${BYellow}###############################################################################${NC}\n\n"
 sleep 2
 printf "\t\t${BYellow}meditate while it takes some time......${NC}\n\n"
 ./autogen.sh
@@ -116,20 +120,20 @@ echo "Start fase 5 : $var6 - Start ./configuration" >> fase5.log
 
 NEXT_STEP="Starting ./configuration and its Flaggs!!"
 printf "\n"
-printf "${Purple}###############################################################################${NC}\n"
+printf "${BYellow}###############################################################################${NC}\n"
 printf "${BWhite}  \t\t $NEXT_STEP     ${NC}\n"
-printf "${Purple}###############################################################################${NC}\n\n"
+printf "${BYellow}###############################################################################${NC}\n\n"
 sleep 2
-./configure  --with-boost-libdir=/usr/lib/arm-linux-gnueabihf CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include -O" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --disable-tests --disable-bench --enable-upnp-default --with-gui --enable-glibc-back-compat --enable-reduce-exports
+./configure --with-boost-libdir=/usr/lib/arm-linux-gnueabihf CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include -O" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --disable-tests --disable-bench --enable-upnp-default --with-gui --enable-glibc-back-compat --enable-reduce-exports
 
 var7=`date`
-echo "Start fase 5 : $var7 - Start make -j4" >> fase5.log
+echo "Start fase 5 : $var7 - Start make -j2" >> fase5.log
 
 NEXT_STEP="make -j2 (using 2 proccessors)"
 printf "\n"
-printf "${Purple}###############################################################################${NC}\n"
+printf "${BYellow}###############################################################################${NC}\n"
 printf "${BWhite}  \t\t $NEXT_STEP     ${NC}\n"
-printf "${Purple}###############################################################################${NC}\n\n"
+printf "${BYellow}###############################################################################${NC}\n\n"
 sleep 2
 make -j2
 
@@ -138,9 +142,9 @@ echo "Start fase 5 : $var8 - sudo make install" >> fase5.log
 
 NEXT_STEP="Sudo make install => Create the binairies!! SRC "
 printf "\n"
-printf "${Purple}###############################################################################${NC}\n"
+printf "${BYellow}###############################################################################${NC}\n"
 printf "${BWhite}  \t\t $NEXT_STEP     ${NC}\n"
-printf "${Purple}###############################################################################${NC}\n\n"
+printf "${BYellow}###############################################################################${NC}\n\n"
 sleep 2
 sudo make install
 
