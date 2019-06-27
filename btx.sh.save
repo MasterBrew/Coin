@@ -26,6 +26,7 @@ printf "${BPurple}##############################################################
 
 printf "\t${BYellow}First things first and than the rest get ready for the ride....${NC}\n\n"
 
+sudo /etc/init.d/dphys-swapfile start
 # For the fun we  show a count down...
 printf "\t\t\t "
 for (( counter=10; counter>=0; counter-- ))
@@ -73,11 +74,10 @@ printf "${BWhite}\t $NEXT_STEP     ${NC}\n"
 printf "${Purple}###############################################################################${NC}\n\n"
 
 # todo   user ask y/n to remove?
-# printf "Removed/Clean  '~/wallets' directory?... Done"
-# rm -rf ~/wallets
-#printf "\n"
-
-printf "Creating  '~/wallets' directory... Done"
+printf "Removed old '~/wallets' directory... Done"
+rm -rf ~/wallets
+printf "\n"
+printf "Creating new '~/wallets' directory... Done"
 mkdir ~/wallets
 cd ~/wallets
 printf "\n"
