@@ -147,7 +147,7 @@ printf "${White}################################################################
 printf "\n\n"
 
 #read -n 1 -s -r -p "                       *  Press any key to begin  *"
-sudo apt-get install libzmq3-dev
+sudo apt-get install -y libzmq3-dev
 sleep 1.5
 
 echo ''
